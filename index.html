@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Dey | Full Stack Web Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="profile-area">
+                <img class="profileIMG" src="./assets/profile-img.png" alt="Sagar Dey Portrait">
+                <div class="introbox">
+                    <h1>Sagar Dey</h1>
+                    <p class="subtitle">Full Stack Web Developer</p>
+                    <p>Hi! I'm a full-stack web developer with a good understanding of both front-end and back-end development. I'm looking for an entry-level job. I want to help a lively team by making scalable, user-friendly web apps and sharing my technical knowledge.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            
+            <section class="skills section-block" id="skills">
+                <h2>Skills</h2>
+                <p>I am a dedicated and motivated individual with a strong passion for learning and personal growth. My experiences have helped me develop both technical and interpersonal skills that I apply to every project.</p>
+                <div class="skillset">
+                    <div class="skillcard">
+                        <i class="fa-brands fa-html5"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-css3-alt"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-js"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-node-js"></i>
+                        <span>Node.js</span>
+                    </div>
+                    </div>
+            </section>
+
+            <section class="education section-block" id="education">
+                <h2>Education</h2>
+                <div class="grid-container">
+                    <div class="educationcard">
+                        <h3>Secondary Education</h3>
+                        <p>Marks(In percentage): 63%</p>
+                    </div>
+                    <div class="educationcard">
+                        <h3>Higher Secondary (Science)</h3>
+                        <p>Marks(In percentage): 57.4%</p>
+                    </div>
+                    <div class="educationcard">
+                        <h3>Diploma (E.E)</h3>
+                        <p>Marks(In CGPA): 7.9</p>
+                    </div>
+                    <div class="educationcard">
+                        <h3>Bachelor of Technology (Computer Science)</h3>
+                        <p>Marks(In CGPA): 8.4</p>
+                    </div>
+                    </div>
+            </section>
+
+            <section class="projects section-block" id="projects">
+                <h2>Projects</h2>
+                <div class="grid-container projects-grid">
+                    <div class="projectcard">
+                        <a href="https://www.pillp.in/" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project1.png" alt="Leave Management System">
+                            </div>
+                            <h3>1. Leave Management System</h3>
+                        </a>
+                    </div>
+                    <div class="projectcard">
+                        <a href="https://github.com/SD-Sagar/Neon-Tetris-Pro-Game" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project2.png" alt="Neon Tetris Pro">
+                            </div>
+                            <h3>2. Neon Tetris Pro</h3>
+                        </a>
+                    </div>
+                    <div class="projectcard">
+                        <a href="https://sd-battle-city.netlify.app/" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project3.png" alt="Battle City">
+                            </div>
+                            <h3>3. Battle City</h3>
+                        </a>
+                    </div>
+                    <div class="projectcard">
+                        <a href="https://sd-tower-of-hanoi.netlify.app/" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project4.png" alt="Tower Of Hanoi">
+                            </div>
+                            <h3>4. Tower Of Hanoi</h3>
+                        </a>
+                    </div>
+                    <div class="projectcard">
+                        <a href="https://sd-open-numerology-app.netlify.app/" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project5.png" alt="Open Numerology App">
+                            </div>
+                            <h3>5. Open Numerology App</h3>
+                        </a>
+                    </div>
+                    <div class="projectcard">
+                        <a href="https://sdword.netlify.app/" target="_blank">
+                            <div class="img-wrapper">
+                                <img src="/assets/project6.png" alt="Rich Text Editor">
+                            </div>
+                            <h3>6. Rich Text Editor</h3>
+                        </a>
+                    </div>
+                    </div>
+            </section>
+
+            <section class="contactme section-block" id="contact">
+                <h2>Contact Me</h2>
+                <p>If you would like to get in touch, please fill out the form</p>
+                <form class="contactform" action="https://formspree.io/f/meevvjnw" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." cols="30" rows="6" required></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="socialbox">
+                <a class="media" href="https://www.linkedin.com/in/sagar-dey-050393377/" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a class="media" href="https://github.com/SD-Sagar" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a class="media" href="mailto:daysagar1999@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+            <p>&copy; 2026 Sagar Dey. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

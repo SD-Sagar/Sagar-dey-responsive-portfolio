@@ -1,0 +1,333 @@
+/* GLOBAL RESETS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Changed to professional font family */
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* LAYOUT CONTAINER */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Consistent spacing between major sections */
+}
+
+/* HEADER / ABOUT AREA */
+.header {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* ### THE PC IMAGE FIX ###
+  The object-fit: cover property is key. It ensures the portrait image 
+  fills the 200x200 square without distortion. object-position: top 
+  is crucial for a portrait to show the face (your forehead) and not the subject's shirt.
+*/
+.profileIMG {
+    width: 200px; /* Perfect square for a perfect circle on PC */
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover; /* Fill the shape without squishing */
+    object-position: top center; /* Prioritize showing the face/forehead */
+    border: 4px solid #4a76ee; /* Optional accent border */
+}
+
+.introbox h1 {
+    font-size: 2.5rem;
+    color: #111;
+}
+
+.introbox .subtitle {
+    font-size: 1.2rem;
+    color: #4a76ee;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* MAIN CONTENT BLOCKS */
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.section-block {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.section-block h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* REUSABLE GRID LAYOUT (For Education & Projects) */
+.grid-container {
+    display: grid;
+    /* This automatically adds columns based on screen size */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* SKILLS SECTION */
+.skillset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.skillcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    color: #555;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skillcard i {
+    font-size: 35px;
+}
+
+.skillcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    color: #4a76ee;
+}
+
+/* EDUCATION CARDS */
+.educationcard {
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.educationcard h3 {
+    font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.educationcard p {
+    color: #666;
+}
+
+.educationcard:hover {
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+/* PROJECT CARDS */
+.projectcard {
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden; /* Important for border-radius on images */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.projectcard a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.projectcard .img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #e9ecef; /* Placholder color */
+}
+
+.projectcard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.projectcard h3 {
+    padding: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.projectcard:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+}
+
+.projectcard:hover img {
+    transform: scale(1.05); /* Slight zoom effect on the image */
+}
+
+/* CONTACT FORM */
+.contactform {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.contactform label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.contactform input, 
+.contactform textarea {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    resize: vertical;
+}
+
+.contactform input:focus, 
+.contactform textarea:focus {
+    outline: none;
+    border-color: #4a76ee;
+    box-shadow: 0 0 0 3px rgba(74, 118, 238, 0.2);
+}
+
+.contactform button {
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4a76ee;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contactform button:hover {
+    background-color: #375bb5;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.socialbox {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.socialbox .media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.socialbox .media i {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.socialbox .media:hover {
+    color: #4a76ee;
+}
+
+/* =========================================
+   RESPONSIVE QUERIES (TABLETS & MOBILE)
+   ========================================= */
+
+/* Tablet and smaller (up to 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .profile-area {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .section-block {
+        padding: 25px 20px;
+    }
+
+    .section-block h2 {
+        font-size: 1.6rem;
+    }
+
+    /* ### THE MOBILE IMAGE FIX ###
+      We adjust the dimensions to 140x140px, but crucially keep the cover 
+      and top position to ensure the face (your forehead) is clear.
+    */
+    /* ### THE MOBILE IMAGE FIX ### */
+    .profileIMG {
+        width: 140px;
+        height: 140px;
+        object-fit: cover; 
+        
+        /* 1. TO ADJUST YOUR FACE INSIDE THE CIRCLE: 
+           Instead of "top center", use percentages or pixels. 
+           "center 15%" pushes your face slightly up. 
+           "center 0%" is the very top. 
+           Play with this number (10%, 20%, etc.) until your forehead is perfectly framed. */
+        object-position: center 15%; 
+
+        /* 2. TO MOVE THE ENTIRE PICTURE UP ON THE PAGE:
+           Add a negative top margin to pull the whole image element upward.
+           Adjust the -20px to -30px or -40px if you need it higher. */
+        margin-top: -20px; 
+    }
+
+    .introbox h1 {
+        font-size: 2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+}
