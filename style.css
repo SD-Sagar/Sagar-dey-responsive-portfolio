@@ -109,7 +109,7 @@ body {
     gap: 10px;
     width: 100px;
     height: 100px;
-    background-color: #f8f9fa;
+    background-color: #faf9f8;
     border: 1px solid #e9ecef;
     border-radius: 10px;
     color: #555;
@@ -131,7 +131,7 @@ body {
     padding: 20px;
     border: 1px solid #e9ecef;
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: #fafaf8;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -154,7 +154,7 @@ body {
 .projectcard {
     border: 1px solid #e9ecef;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #faf878;
     overflow: hidden; /* Important for border-radius on images */
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -298,6 +298,9 @@ body {
 
     .section-block h2 {
         font-size: 1.6rem;
+    }
+    .skillset{
+        justify-content: center;
     }
 
     /* ### THE MOBILE IMAGE FIX ###
