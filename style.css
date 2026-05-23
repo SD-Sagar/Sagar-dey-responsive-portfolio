@@ -99,6 +99,7 @@ body {
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 20px;
+    justify-content: space-between;
 }
 
 .skillcard {
@@ -154,7 +155,7 @@ body {
 .projectcard {
     border: 1px solid #e9ecef;
     border-radius: 10px;
-    background-color: #faf878;
+    background-color: #c7c7c6;
     overflow: hidden; /* Important for border-radius on images */
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
