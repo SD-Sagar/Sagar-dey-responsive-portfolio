@@ -598,9 +598,10 @@ body {
 }
 
 .badge-mongo { background: #47A248; }
-.badge-express { background: #000000; }
+.badge-express { background: #2d2d2d; color: #ffffff; border: 1px solid rgba(255,255,255,0.15); }
 .badge-react { background: #61DAFB; color: #000; }
 .badge-node { background: #339933; }
+.badge-phaser { background: linear-gradient(135deg, #8a2be2, #4b0082); color: #ffffff; }
 .badge-js { background: #F7DF1E; color: #000; }
 .badge-html { background: #E34F26; }
 .badge-css { background: #1572B6; }
