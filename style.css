@@ -978,7 +978,25 @@ body {
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 100%;
+        justify-items: stretch;
+        align-items: stretch;
+    }
+
+    .projectcard {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .project-link,
+    .img-wrapper,
+    .project-info-mobile {
+        width: 100%;
+        max-width: 100%;
     }
     
     /* Mobile: Show badge system, hide overlay */
