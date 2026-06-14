@@ -488,11 +488,13 @@ body {
 
 .projectcard {
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 16px;
     background-color: var(--bg-secondary);
-    overflow: hidden;
+    overflow: clip;
     transition: var(--transition);
     position: relative;
+    box-shadow: var(--shadow-sm);
+    isolation: isolate;
 }
 
 .projectcard.hidden-project {
@@ -508,6 +510,8 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
+    border-radius: inherit;
+    overflow: hidden;
 }
 
 .contractual-badge {
@@ -528,8 +532,10 @@ body {
 
 .img-wrapper {
     width: 100%;
-    height: 220px;
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
     overflow: hidden;
+    border-radius: 16px 16px 0 0;
     background: var(--border-color);
     position: relative;
 }
@@ -537,8 +543,12 @@ body {
 .img-wrapper img {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
     transition: var(--transition);
+    transform: translateZ(0);
 }
 
 /* DESKTOP OVERLAY */
@@ -609,6 +619,7 @@ body {
 .badge-zego { background: #FF6B00; }
 .badge-whatsapp { background: #25D366; }
 .badge-peer { background: #9B59B6; }
+.badge-Gemini { background: #FF6B00; }
 
 .visit-btn {
     display: inline-block;
