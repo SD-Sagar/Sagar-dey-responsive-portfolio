@@ -620,6 +620,7 @@ body {
 .badge-whatsapp { background: #25D366; }
 .badge-peer { background: #9B59B6; }
 .badge-Gemini { background: #FF6B00; }
+.badge-next { background: #202020e3; color: #fff; }
 
 .visit-btn {
     display: inline-block;
