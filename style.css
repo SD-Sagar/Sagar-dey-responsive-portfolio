@@ -621,6 +621,7 @@ body {
 .badge-peer { background: #9B59B6; }
 .badge-Gemini { background: #FF6B00; }
 .badge-next { background: #202020e3; color: #fff; }
+.badge-WebRTC { background: #4CAF50; color: #fff; }
 
 .visit-btn {
     display: inline-block;
