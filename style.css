@@ -619,9 +619,12 @@ body {
 .badge-zego { background: #FF6B00; }
 .badge-whatsapp { background: #25D366; }
 .badge-peer { background: #9B59B6; }
-.badge-Gemini { background: #FF6B00; }
+.badge-Gemini { background: #0464d1; }
+.badge-Groq { background: #FF6B00; }
 .badge-next { background: #202020e3; color: #fff; }
 .badge-WebRTC { background: #4CAF50; color: #fff; }
+.badge-Tailwind { background: #38BDF8; color: #fff; }
+.badge-Nodemailer { background: #1b6ca6; color: #fff; }
 
 .visit-btn {
     display: inline-block;
