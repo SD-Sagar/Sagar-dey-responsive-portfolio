@@ -363,24 +363,32 @@ if (window.innerWidth <= 768) {
     
     if (skillset && scrollDot) {
         let isDragging = false;
+        let animationFrameId = null;
         
-        // Update dot position based on scroll
+        // Update dot position based on scroll (optimized with RAF)
         function updateDotPosition() {
-            const scrollLeft = skillset.scrollLeft;
-            const scrollWidth = skillset.scrollWidth - skillset.offsetWidth;
-            const percentage = (scrollLeft / scrollWidth) * 100;
-            
-            scrollDot.style.left = percentage + '%';
-            scrollProgress.style.width = percentage + '%';
-            
-            // Hide scroll hint after first interaction
-            if (scrollHint && scrollLeft > 10) {
-                scrollHint.classList.add('hidden');
-                localStorage.setItem('skillsScrollHintSeen', 'true');
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
             }
+            
+            animationFrameId = requestAnimationFrame(() => {
+                const scrollLeft = skillset.scrollLeft;
+                const scrollWidth = skillset.scrollWidth - skillset.offsetWidth;
+                const percentage = (scrollLeft / scrollWidth) * 100;
+                
+                // Direct style updates - fastest method
+                scrollDot.style.left = percentage + '%';
+                scrollProgress.style.width = percentage + '%';
+                
+                // Hide scroll hint after first interaction
+                if (scrollHint && scrollLeft > 10) {
+                    scrollHint.classList.add('hidden');
+                    localStorage.setItem('skillsScrollHintSeen', 'true');
+                }
+            });
         }
         
-        // Update scroll based on dot position
+        // Update scroll based on dot position (instant, no animation)
         function updateScroll(clientX) {
             const track = scrollDot.parentElement;
             const rect = track.getBoundingClientRect();
@@ -390,6 +398,7 @@ if (window.innerWidth <= 768) {
             const scrollWidth = skillset.scrollWidth - skillset.offsetWidth;
             const targetScroll = (scrollWidth * percentage) / 100;
             
+            // Direct scroll - no smooth behavior for instant response
             skillset.scrollLeft = targetScroll;
         }
         
@@ -406,9 +415,10 @@ if (window.innerWidth <= 768) {
         
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
+                e.preventDefault();
                 updateScroll(e.clientX);
-                // Haptic feedback
-                if (navigator.vibrate) {
+                // Light haptic feedback (throttled)
+                if (navigator.vibrate && Math.random() > 0.9) {
                     navigator.vibrate(1);
                 }
             }
@@ -416,6 +426,7 @@ if (window.innerWidth <= 768) {
         
         document.addEventListener('touchmove', (e) => {
             if (isDragging) {
+                e.preventDefault();
                 updateScroll(e.touches[0].clientX);
             }
         }, { passive: false });
@@ -466,13 +477,15 @@ if (window.innerWidth <= 768) {
         // Add pop animation as skills scroll into center view
         const observeSkills = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
                     entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
                 }
             });
         }, {
             root: skillset,
-            threshold: [0.5]
+            threshold: [0, 0.5, 1]
         });
         
         skills.forEach(skill => {
