@@ -37,13 +37,13 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Image Loading Progress Indicator -->
-    <div class="image-load-indicator" id="imageLoadIndicator">
+    <!-- Image Loading Progress Indicator (COMMENTED OUT - Uncomment to show loading animation) -->
+    <!-- <div class="image-load-indicator" id="imageLoadIndicator">
         <div class="load-progress-bar">
             <div class="load-progress-fill" id="loadProgressFill"></div>
         </div>
         <span class="load-status" id="loadStatus">Loading images... <span id="loadPercentage">0%</span></span>
-    </div>
+    </div> -->
 
     <div class="container">
         <header class="header" id="about">
@@ -62,7 +62,11 @@
             <section class="skills section-block fade-in-section" id="skills">
                 <h2>Skills</h2>
                 <p>I am a dedicated and motivated individual with a strong passion for learning and personal growth. My experiences have helped me develop both technical and interpersonal skills that I apply to every project.</p>
-                <div class="skillset">
+                
+                <!-- Scroll hint for mobile users -->
+                <div class="scroll-hint" id="scrollHint">Swipe to see more</div>
+                
+                <div class="skillset" id="skillset">
                     <div class="skillcard">
                         <i class="fa-brands fa-html5"></i>
                         <span>HTML</span>
@@ -98,6 +102,35 @@
                     <div class="skillcard">
                         <i class="fa-solid fa-bolt"></i>
                         <span>Next.js</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <span>WebRTC</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>PeerJS</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-solid fa-cloud"></i>
+                        <span>Supabase</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-docker"></i>
+                        <span>Docker</span>
+                    </div>
+                    <div class="skillcard">
+                        <i class="fa-brands fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                </div>
+                
+                <!-- Scroll indicator slider (mobile only) -->
+                <div class="skills-scroll-indicator" id="skillsScrollIndicator">
+                    <span class="scroll-indicator-hint">Drag to explore</span>
+                    <div class="scroll-track">
+                        <div class="scroll-progress" id="scrollProgress"></div>
+                        <div class="scroll-dot" id="scrollDot"></div>
                     </div>
                 </div>
             </section>

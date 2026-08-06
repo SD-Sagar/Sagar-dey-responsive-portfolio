@@ -314,6 +314,7 @@ body {
     border-radius: 10px;
     color: var(--text-secondary);
     transition: var(--transition);
+    flex-shrink: 0;
 }
 
 .skillcard i {
@@ -701,8 +702,8 @@ body {
     }
 }
 
-/* IMAGE LOADING PROGRESS INDICATOR */
-.image-load-indicator {
+/* IMAGE LOADING PROGRESS INDICATOR (COMMENTED OUT - Uncomment to show loading animation) */
+/* .image-load-indicator {
     position: fixed;
     top: 70px;
     right: 20px;
@@ -750,7 +751,7 @@ body {
 #loadPercentage {
     font-weight: 600;
     color: var(--accent-color);
-}
+} */
 
 /* HOVER EFFECTS (Desktop Only) */
 @media (min-width: 769px) {
@@ -1012,8 +1013,241 @@ body {
         font-size: 1.6rem;
     }
     
+    /* Mobile: Fun horizontal scrollable skills */
+    .skills {
+        position: relative;
+    }
+    
     .skillset {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px 5px 20px 5px;
+        margin-left: -5px;
+        margin-right: -5px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+        scroll-snap-type: x mandatory; /* Snap scrolling */
+        gap: 12px;
+    }
+    
+    /* Hide scrollbar but keep functionality */
+    .skillset::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Scroll indicator - Interactive slider */
+    .skills-scroll-indicator {
+        display: flex;
+        align-items: center;
         justify-content: center;
+        margin-top: 25px;
+        padding: 20px 15px;
+        background: var(--bg-primary);
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: relative;
+    }
+    
+    /* The horizontal line track */
+    .scroll-track {
+        position: relative;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(to right, var(--border-color), var(--border-color));
+        border-radius: 3px;
+        overflow: visible;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    /* Progress fill (shows how much scrolled) */
+    .scroll-progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+        border-radius: 3px;
+        width: 0%;
+        transition: width 0.2s ease;
+        box-shadow: 0 0 8px rgba(74, 118, 238, 0.3);
+    }
+    
+    /* The draggable dot */
+    .scroll-dot {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+        border-radius: 50%;
+        cursor: grab;
+        box-shadow: 0 4px 12px rgba(74, 118, 238, 0.4), 0 0 0 4px rgba(74, 118, 238, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 10;
+        border: 3px solid white;
+    }
+    
+    .scroll-dot:active {
+        cursor: grabbing;
+        transform: translate(-50%, -50%) scale(1.15);
+        box-shadow: 0 6px 20px rgba(74, 118, 238, 0.6), 0 0 0 6px rgba(74, 118, 238, 0.2);
+    }
+    
+    /* Pulse animation to show it's interactive */
+    .scroll-dot {
+        animation: dotPulse 2.5s ease-in-out infinite;
+    }
+    
+    @keyframes dotPulse {
+        0%, 100% {
+            box-shadow: 0 4px 12px rgba(74, 118, 238, 0.4), 0 0 0 4px rgba(74, 118, 238, 0.1);
+        }
+        50% {
+            box-shadow: 0 6px 16px rgba(74, 118, 238, 0.6), 0 0 0 8px rgba(74, 118, 238, 0.15);
+        }
+    }
+    
+    /* Helper text hint */
+    .scroll-indicator-hint {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.7rem;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        opacity: 0.7;
+        font-weight: 500;
+        pointer-events: none;
+    }
+    
+    .scroll-indicator-hint::before {
+        content: '← ';
+    }
+    
+    .scroll-indicator-hint::after {
+        content: ' →';
+    }
+    
+    /* Scroll hint overlay - appears on first visit */
+    .scroll-hint {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, rgba(74, 118, 238, 0.95), rgba(107, 154, 255, 0.95));
+        color: white;
+        padding: 10px 16px;
+        border-radius: 25px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        pointer-events: none;
+        animation: bounceHint 1.5s ease-in-out infinite;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(74, 118, 238, 0.5);
+        backdrop-filter: blur(5px);
+    }
+    
+    .scroll-hint::before {
+        content: '👉';
+        margin-right: 5px;
+        display: inline-block;
+        animation: wiggle 1s ease-in-out infinite;
+    }
+    
+    .scroll-hint.hidden {
+        animation: fadeOut 0.3s ease forwards;
+    }
+    
+    @keyframes bounceHint {
+        0%, 100% { 
+            transform: translateY(-50%) translateX(0);
+            box-shadow: 0 4px 15px rgba(74, 118, 238, 0.5);
+        }
+        50% { 
+            transform: translateY(-50%) translateX(-8px);
+            box-shadow: 0 6px 20px rgba(74, 118, 238, 0.7);
+        }
+    }
+    
+    @keyframes wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+    }
+    
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: translateY(-50%) translateX(-20px);
+        }
+    }
+    
+    /* Fade gradients on sides */
+    .skills::before,
+    .skills::after {
+        content: '';
+        position: absolute;
+        top: 60px;
+        bottom: 40px;
+        width: 30px;
+        pointer-events: none;
+        z-index: 2;
+    }
+    
+    .skills::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-secondary), transparent);
+    }
+    
+    .skills::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-secondary), transparent);
+    }
+    
+    .skillcard {
+        min-width: 90px;
+        width: 90px;
+        height: 90px;
+        scroll-snap-align: start; /* Snap to each card */
+        scroll-snap-stop: normal;
+        transition: transform 0.2s ease;
+    }
+    
+    /* Add subtle scale animation on scroll into view */
+    .skillcard.in-view {
+        animation: skillPop 0.4s ease forwards;
+    }
+    
+    @keyframes skillPop {
+        0% {
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .skillcard i {
+        font-size: 30px;
+        transition: transform 0.2s ease;
+    }
+    
+    /* Fun bounce on touch */
+    .skillcard:active i {
+        transform: scale(1.2);
+    }
+    
+    .skillcard span {
+        font-size: 0.75rem;
     }
 
     .profileIMG {
@@ -1100,7 +1334,8 @@ body {
         padding: 15px 20px;
     }
 
-    .image-load-indicator {
+    /* Mobile: Loading indicator adjustments (if uncommented) */
+    /* .image-load-indicator {
         right: 10px;
         left: 10px;
         top: 60px;
@@ -1110,5 +1345,5 @@ body {
 
     .load-status {
         font-size: 0.8rem;
-    }
+    } */
 }

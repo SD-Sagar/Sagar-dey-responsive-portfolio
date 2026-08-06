@@ -350,32 +350,165 @@ highlightActiveSection();
 document.querySelector('.header').classList.add('fade-in');
 
 // ========================================
+// MOBILE SKILLS SCROLL INTERACTION
+// ========================================
+
+// Only run on mobile devices
+if (window.innerWidth <= 768) {
+    const skillset = document.getElementById('skillset');
+    const scrollIndicator = document.getElementById('skillsScrollIndicator');
+    const scrollHint = document.getElementById('scrollHint');
+    const scrollDot = document.getElementById('scrollDot');
+    const scrollProgress = document.getElementById('scrollProgress');
+    
+    if (skillset && scrollDot) {
+        let isDragging = false;
+        
+        // Update dot position based on scroll
+        function updateDotPosition() {
+            const scrollLeft = skillset.scrollLeft;
+            const scrollWidth = skillset.scrollWidth - skillset.offsetWidth;
+            const percentage = (scrollLeft / scrollWidth) * 100;
+            
+            scrollDot.style.left = percentage + '%';
+            scrollProgress.style.width = percentage + '%';
+            
+            // Hide scroll hint after first interaction
+            if (scrollHint && scrollLeft > 10) {
+                scrollHint.classList.add('hidden');
+                localStorage.setItem('skillsScrollHintSeen', 'true');
+            }
+        }
+        
+        // Update scroll based on dot position
+        function updateScroll(clientX) {
+            const track = scrollDot.parentElement;
+            const rect = track.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            
+            const scrollWidth = skillset.scrollWidth - skillset.offsetWidth;
+            const targetScroll = (scrollWidth * percentage) / 100;
+            
+            skillset.scrollLeft = targetScroll;
+        }
+        
+        // Mouse/Touch drag events
+        scrollDot.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        scrollDot.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        }, { passive: false });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updateScroll(e.clientX);
+                // Haptic feedback
+                if (navigator.vibrate) {
+                    navigator.vibrate(1);
+                }
+            }
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                updateScroll(e.touches[0].clientX);
+            }
+        }, { passive: false });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+        
+        // Click on track to jump
+        scrollDot.parentElement.addEventListener('click', (e) => {
+            if (e.target !== scrollDot) {
+                updateScroll(e.clientX);
+            }
+        });
+        
+        // Update dot when user scrolls manually
+        skillset.addEventListener('scroll', updateDotPosition);
+        
+        // Initial position
+        updateDotPosition();
+        
+        // Hide hint if user has seen it before
+        if (localStorage.getItem('skillsScrollHintSeen') === 'true') {
+            if (scrollHint) scrollHint.classList.add('hidden');
+        } else {
+            // Auto-hide hint after 4 seconds
+            setTimeout(() => {
+                if (scrollHint) scrollHint.classList.add('hidden');
+            }, 4000);
+        }
+        
+        // Add touch feedback to skill cards
+        const skills = skillset.querySelectorAll('.skillcard');
+        skills.forEach(skill => {
+            skill.addEventListener('touchstart', () => {
+                skill.style.transform = 'scale(0.95)';
+            });
+            
+            skill.addEventListener('touchend', () => {
+                skill.style.transform = '';
+            });
+        });
+        
+        // Add pop animation as skills scroll into center view
+        const observeSkills = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            root: skillset,
+            threshold: [0.5]
+        });
+        
+        skills.forEach(skill => {
+            observeSkills.observe(skill);
+        });
+    }
+}
+
+// ========================================
 // LAZY LOADING IMAGES (Intersection Observer)
 // ========================================
 
+/* LOADING PROGRESS TRACKER (COMMENTED OUT - Uncomment to show loading animation) */
 // Track loading progress
-let totalImages = 0;
-let loadedImages = 0;
-const loadIndicator = document.getElementById('imageLoadIndicator');
-const loadProgressFill = document.getElementById('loadProgressFill');
-const loadPercentage = document.getElementById('loadPercentage');
-const loadStatus = document.getElementById('loadStatus');
+// let totalImages = 0;
+// let loadedImages = 0;
+// const loadIndicator = document.getElementById('imageLoadIndicator');
+// const loadProgressFill = document.getElementById('loadProgressFill');
+// const loadPercentage = document.getElementById('loadPercentage');
+// const loadStatus = document.getElementById('loadStatus');
 
 // Count total images that need loading
-totalImages = document.querySelectorAll('.lazy-image').length;
+// totalImages = document.querySelectorAll('.lazy-image').length;
 
-function updateLoadProgress() {
-    const percentage = Math.round((loadedImages / totalImages) * 100);
-    loadProgressFill.style.width = percentage + '%';
-    loadPercentage.textContent = percentage + '%';
-    
-    if (percentage === 100) {
-        loadStatus.textContent = '✓ All images loaded!';
-        setTimeout(() => {
-            loadIndicator.classList.remove('visible');
-        }, 2000);
-    }
-}
+// function updateLoadProgress() {
+//     const percentage = Math.round((loadedImages / totalImages) * 100);
+//     loadProgressFill.style.width = percentage + '%';
+//     loadPercentage.textContent = percentage + '%';
+//     
+//     if (percentage === 100) {
+//         loadStatus.textContent = '✓ All images loaded!';
+//         setTimeout(() => {
+//             loadIndicator.classList.remove('visible');
+//         }, 2000);
+//     }
+// }
 
 // Configuration for Intersection Observer
 const lazyLoadOptions = {
@@ -392,10 +525,11 @@ function handleLazyLoad(entries, observer) {
             const src = img.getAttribute('data-src');
             
             if (src) {
+                /* LOADING INDICATOR (COMMENTED OUT - Uncomment to show loading animation) */
                 // Show loading indicator
-                if (loadedImages === 0 && totalImages > 0) {
-                    loadIndicator.classList.add('visible');
-                }
+                // if (loadedImages === 0 && totalImages > 0) {
+                //     loadIndicator.classList.add('visible');
+                // }
                 
                 // Create a new image to preload
                 const tempImg = new Image();
@@ -404,14 +538,16 @@ function handleLazyLoad(entries, observer) {
                     img.classList.add('loaded');
                     img.removeAttribute('data-src');
                     
+                    /* LOADING INDICATOR (COMMENTED OUT - Uncomment to show loading animation) */
                     // Update progress
-                    loadedImages++;
-                    updateLoadProgress();
+                    // loadedImages++;
+                    // updateLoadProgress();
                 };
                 tempImg.onerror = () => {
+                    /* LOADING INDICATOR (COMMENTED OUT - Uncomment to show loading animation) */
                     // Handle error gracefully
-                    loadedImages++;
-                    updateLoadProgress();
+                    // loadedImages++;
+                    // updateLoadProgress();
                 };
                 tempImg.src = src;
             }
@@ -436,7 +572,8 @@ loadMoreBtn.addEventListener('click', () => {
     // Wait a tick for DOM to update
     setTimeout(() => {
         const newLazyImages = document.querySelectorAll('.lazy-image:not(.loaded)');
-        totalImages = document.querySelectorAll('.lazy-image').length;
+        /* LOADING INDICATOR (COMMENTED OUT - Uncomment to show loading animation) */
+        // totalImages = document.querySelectorAll('.lazy-image').length;
         
         newLazyImages.forEach(img => {
             if (!img.src || img.src.includes('data:')) {
