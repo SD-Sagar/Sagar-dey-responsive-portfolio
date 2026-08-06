@@ -36,6 +36,15 @@
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Image Loading Progress Indicator -->
+    <div class="image-load-indicator" id="imageLoadIndicator">
+        <div class="load-progress-bar">
+            <div class="load-progress-fill" id="loadProgressFill"></div>
+        </div>
+        <span class="load-status" id="loadStatus">Loading images... <span id="loadPercentage">0%</span></span>
+    </div>
+
     <div class="container">
         <header class="header" id="about">
             <div class="profile-area fade-in">
@@ -189,7 +198,7 @@
                     <div class="projectcard" data-priority="top">
                         <a href="https://sd-adda.onrender.com/login" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project10.png" alt="SD-Adda">
+                                <img src="/assets/project10.png" alt="SD-Adda" loading="eager" fetchpriority="high">
                                 <div class="project-overlay">
                                     <h3>SD-Adda</h3>
                                     <p class="project-desc">Discord-like platform with real-time collaboration, media sharing via Cloudinary, and Zegocloud API for voice/video calls. Full-featured MERN social hub.</p>
@@ -220,7 +229,7 @@
                     <div class="projectcard" data-priority="top">
                         <a href="https://akashvani-gfqd.onrender.com/login" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project8.png" alt="Akashvani">
+                                <img src="/assets/project8.png" alt="Akashvani" loading="eager" fetchpriority="high">
                                 <div class="project-overlay">
                                     <h3>Akashvani</h3>
                                     <p class="project-desc">WhatsApp-inspired messaging app with real-time chat, voice messages, and media sharing powered by Cloudinary and MERN stack.</p>
@@ -250,7 +259,7 @@
                     <div class="projectcard" data-priority="top">
                         <a href="https://sd-draw.onrender.com/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project7.png" alt="SD-Draw">
+                                <img src="/assets/project7.png" alt="SD-Draw" loading="eager" fetchpriority="high">
                                 <div class="project-overlay">
                                     <h3>SD-Draw</h3>
                                     <p class="project-desc">Miro-like infinite canvas for real-time collaborative drawing using PeerJS. Built with MERN for seamless multi-user creativity.</p>
@@ -283,7 +292,7 @@
                                 <i class="fas fa-briefcase"></i> Contractual
                             </div>
                             <div class="img-wrapper">
-                                <img src="/assets/project1.png" alt="Leave Management System">
+                                <img src="/assets/project1.png" alt="Leave Management System" loading="eager" fetchpriority="high">
                                 <div class="project-overlay">
                                     <h3>Leave Management System</h3>
                                     <p class="project-desc">Enterprise leave management with WhatsApp API integration for real-time notifications to owners, managers, HR, and employees. MERN stack.</p>
@@ -314,7 +323,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-verdict.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project12.png" alt="SD-Verdict">
+                                <img data-src="/assets/project12.png" alt="SD-Verdict" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-Verdict</h3>
                                     <p class="project-desc"> SD Verdict is a AI-powered comparison and decision intelligence application.</p>
@@ -344,7 +353,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-share.onrender.com/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project15.png" alt="SD-Share">
+                                <img data-src="/assets/project15.png" alt="SD-Share" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-Share</h3>
                                     <p class="project-desc"> SD-Share is a premium, real-time peer-to-peer file sharing platform designed for transferring files of virtually any size directly between two users.</p>
@@ -374,7 +383,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://github.com/SD-Sagar/SD-Hawk" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/SD-Hawk.png" alt="SD-Hawk">
+                                <img data-src="/assets/SD-Hawk.png" alt="SD-Hawk" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-Hawk</h3>
                                     <p class="project-desc">SD-Hawk is a AI-powered surveillance system, It monitors camera feeds in real-time, processes them using computer vision, and sends intelligent alerts via Groq AI and Nodemailer.</p>
@@ -404,7 +413,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://mern-bible.vercel.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/MERN_BIBLE.png" alt="SD-MERN Bible">
+                                <img data-src="/assets/MERN_BIBLE.png" alt="SD-MERN Bible" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-MERN BIBLE</h3>
                                     <p class="project-desc"> SD-MERN BIBLE is an app designed to provide comprehensive resources and information about the MERN stack.</p>
@@ -432,7 +441,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-arcade.onrender.com/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project13.png" alt="SD-Arcade">
+                                <img data-src="/assets/project13.png" alt="SD-Arcade" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-Arcade</h3>
                                     <p class="project-desc">SD-Arcade is a browser-based retro gaming platform with seamless P2P Multiplayer.</p>
@@ -462,7 +471,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-the-day-sync-protocol.onrender.com/login" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project11.png" alt="SD-The Day-Sync Protocol">
+                                <img data-src="/assets/project11.png" alt="SD-The Day-Sync Protocol" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD-The Day-Sync Protocol</h3>
                                     <p class="project-desc"> A minimalist multiplayer game inspired by Mini Militia, built entirely on the MERN stack.</p>
@@ -492,7 +501,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-tetris.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project2.png" alt="Neon Tetris Pro">
+                                <img data-src="/assets/project2.png" alt="Neon Tetris Pro" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>Neon Tetris Pro</h3>
                                     <p class="project-desc">Classic Tetris with neon aesthetics. Pure vanilla JavaScript, HTML, and CSS.</p>
@@ -519,7 +528,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-battle-city.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project3.png" alt="Battle City">
+                                <img data-src="/assets/project3.png" alt="Battle City" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>Battle City</h3>
                                     <p class="project-desc">Retro tank battle game recreation. Built with HTML, CSS, and JavaScript.</p>
@@ -546,7 +555,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-tower-of-hanoi.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project4.png" alt="Tower Of Hanoi">
+                                <img data-src="/assets/project4.png" alt="Tower Of Hanoi" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>Tower Of Hanoi</h3>
                                     <p class="project-desc">Interactive puzzle solver with visual animations. Vanilla JavaScript implementation.</p>
@@ -573,7 +582,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-open-numerology-app.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project5.png" alt="Open Numerology App">
+                                <img data-src="/assets/project5.png" alt="Open Numerology App" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>Open Numerology App</h3>
                                     <p class="project-desc">Calculate and explore numerology meanings. Clean JavaScript interface.</p>
@@ -600,7 +609,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sdword.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project6.png" alt="Rich Text Editor">
+                                <img data-src="/assets/project6.png" alt="Rich Text Editor" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>SD Word</h3>
                                     <p class="project-desc">Feature-rich text editor with auto-save to localStorage. Built with vanilla JavaScript.</p>
@@ -627,7 +636,7 @@
                     <div class="projectcard hidden-project" data-priority="low">
                         <a href="https://sd-chess.netlify.app/" target="_blank" class="project-link">
                             <div class="img-wrapper">
-                                <img src="/assets/project9.png" alt="Neon Chess">
+                                <img data-src="/assets/project9.png" alt="Neon Chess" loading="lazy" class="lazy-image">
                                 <div class="project-overlay">
                                     <h3>Neon Chess</h3>
                                     <p class="project-desc">Play vs AI or online with friends using PeerJS. Neon-styled with vanilla JavaScript.</p>
