@@ -348,3 +348,124 @@ highlightActiveSection();
 
 // Ensure fade-in animation for header
 document.querySelector('.header').classList.add('fade-in');
+
+// ========================================
+// LAZY LOADING IMAGES (Intersection Observer)
+// ========================================
+
+// Track loading progress
+let totalImages = 0;
+let loadedImages = 0;
+const loadIndicator = document.getElementById('imageLoadIndicator');
+const loadProgressFill = document.getElementById('loadProgressFill');
+const loadPercentage = document.getElementById('loadPercentage');
+const loadStatus = document.getElementById('loadStatus');
+
+// Count total images that need loading
+totalImages = document.querySelectorAll('.lazy-image').length;
+
+function updateLoadProgress() {
+    const percentage = Math.round((loadedImages / totalImages) * 100);
+    loadProgressFill.style.width = percentage + '%';
+    loadPercentage.textContent = percentage + '%';
+    
+    if (percentage === 100) {
+        loadStatus.textContent = '✓ All images loaded!';
+        setTimeout(() => {
+            loadIndicator.classList.remove('visible');
+        }, 2000);
+    }
+}
+
+// Configuration for Intersection Observer
+const lazyLoadOptions = {
+    root: null, // viewport
+    rootMargin: '50px', // Start loading 50px before image enters viewport
+    threshold: 0.01
+};
+
+// Callback function when image enters viewport
+function handleLazyLoad(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.getAttribute('data-src');
+            
+            if (src) {
+                // Show loading indicator
+                if (loadedImages === 0 && totalImages > 0) {
+                    loadIndicator.classList.add('visible');
+                }
+                
+                // Create a new image to preload
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    img.src = src;
+                    img.classList.add('loaded');
+                    img.removeAttribute('data-src');
+                    
+                    // Update progress
+                    loadedImages++;
+                    updateLoadProgress();
+                };
+                tempImg.onerror = () => {
+                    // Handle error gracefully
+                    loadedImages++;
+                    updateLoadProgress();
+                };
+                tempImg.src = src;
+            }
+            
+            // Stop observing this image
+            observer.unobserve(img);
+        }
+    });
+}
+
+// Create the Intersection Observer
+const lazyLoadObserver = new IntersectionObserver(handleLazyLoad, lazyLoadOptions);
+
+// Observe all lazy images
+document.querySelectorAll('.lazy-image').forEach(img => {
+    lazyLoadObserver.observe(img);
+});
+
+// Re-observe images when "Load More" is clicked
+const originalLoadMoreLogic = loadMoreBtn.onclick;
+loadMoreBtn.addEventListener('click', () => {
+    // Wait a tick for DOM to update
+    setTimeout(() => {
+        const newLazyImages = document.querySelectorAll('.lazy-image:not(.loaded)');
+        totalImages = document.querySelectorAll('.lazy-image').length;
+        
+        newLazyImages.forEach(img => {
+            if (!img.src || img.src.includes('data:')) {
+                lazyLoadObserver.observe(img);
+            }
+        });
+    }, 100);
+});
+
+// ========================================
+// PREFETCH PRIORITY IMAGES ON HOVER
+// ========================================
+
+// Prefetch hidden project images when user hovers over "Load More" button
+let prefetchStarted = false;
+loadMoreBtn.addEventListener('mouseenter', () => {
+    if (!prefetchStarted) {
+        prefetchStarted = true;
+        
+        // Get first 2 hidden images and start loading them
+        const hiddenImages = document.querySelectorAll('.hidden-project .lazy-image');
+        Array.from(hiddenImages).slice(0, 2).forEach(img => {
+            const src = img.getAttribute('data-src');
+            if (src) {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = src;
+                document.head.appendChild(link);
+            }
+        });
+    }
+});

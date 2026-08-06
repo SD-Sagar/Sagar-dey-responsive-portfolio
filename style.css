@@ -677,6 +677,81 @@ body {
     font-weight: 600;
 }
 
+/* LAZY LOADING STYLES */
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    background: linear-gradient(90deg, var(--border-color) 0%, var(--bg-primary) 50%, var(--border-color) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+    background: none;
+    animation: none;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* IMAGE LOADING PROGRESS INDICATOR */
+.image-load-indicator {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: var(--bg-secondary);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    min-width: 200px;
+}
+
+.image-load-indicator.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.load-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.load-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.load-status {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#loadPercentage {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
 /* HOVER EFFECTS (Desktop Only) */
 @media (min-width: 769px) {
     .projectcard:hover .project-overlay {
@@ -1023,5 +1098,17 @@ body {
     .load-more-btn {
         width: 100%;
         padding: 15px 20px;
+    }
+
+    .image-load-indicator {
+        right: 10px;
+        left: 10px;
+        top: 60px;
+        min-width: auto;
+        padding: 12px 15px;
+    }
+
+    .load-status {
+        font-size: 0.8rem;
     }
 }
