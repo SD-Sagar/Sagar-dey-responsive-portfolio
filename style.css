@@ -346,22 +346,36 @@ body {
 }
 
 /* EDUCATION CARDS */
+.education .grid-container {
+    gap: 16px;
+    margin-top: 15px;
+}
+
+/* Four compact cards in a single row on wide screens */
+@media (min-width: 1024px) {
+    .education .grid-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 .educationcard {
-    padding: 20px;
+    padding: 16px;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: var(--bg-primary);
     transition: var(--transition);
 }
 
 .educationcard h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.35;
     color: var(--text-primary);
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .educationcard p {
     color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .educationcard:hover {
@@ -378,7 +392,7 @@ body {
 }
 
 .cert-subsection {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .cert-subsection:last-child {
@@ -386,37 +400,45 @@ body {
 }
 
 .subsection-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--accent-color);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
     border-bottom: 2px solid var(--border-color);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .subsection-title i {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 14px;
+}
+
+/* Two compact cards per row, centered, on desktop */
+@media (min-width: 769px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, minmax(0, 420px));
+        justify-content: center;
+    }
 }
 
 .certcard {
-    padding: 25px;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     background: var(--bg-primary);
     transition: var(--transition);
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .certcard:hover {
@@ -426,60 +448,60 @@ body {
 }
 
 .cert-icon {
-    width: 60px;
-    height: 60px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .cert-icon i {
-    font-size: 28px;
+    font-size: 20px;
     color: white;
 }
 
 .certcard h4 {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     color: var(--text-primary);
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .cert-org {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--accent-color);
     font-weight: 600;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
 
 .cert-year {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .cert-desc {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 15px;
+    line-height: 1.45;
+    margin-bottom: 10px;
     flex-grow: 1;
 }
 
 .cert-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    gap: 6px;
+    padding: 8px 16px;
     background: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 6px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: var(--transition);
     align-self: flex-start;
 }
@@ -1279,24 +1301,24 @@ body {
     }
     
     .cert-subsection {
-        margin-bottom: 30px;
+        margin-bottom: 26px;
     }
     
     .subsection-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .certcard {
-        padding: 20px;
+        padding: 16px;
     }
     
     .cert-icon {
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
     }
     
     .cert-icon i {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .projects-grid {
